@@ -1,0 +1,33 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Virtual Environments ---
+venv/
+.venv/
+env/
+
+# --- Environment Variables ---
+.env
+.env.*
+!.env.example
+
+# --- Docker & Database ---
+postgres_data/
+docker-compose.override.yml
+
+# --- IDEs y System ---
+.vscode/
+.idea/
+.DS_Store
+
+# --- Testing & Coverage ---
+.coverage
+htmlcov/
+.pytest_cache/
+
+# --- Distribution files ---
+dist/
+build/
+*.egg-info/
