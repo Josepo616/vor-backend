@@ -31,10 +31,6 @@ target_metadata = Base.metadata
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
 
-print("---------------------------------------------------")
-print(f"DEBUG: Tablas detectadas en Base.metadata: {target_metadata.tables.keys()}")
-print("---------------------------------------------------")
-
 # Overwrite the sqlalchemy.url setting with the one from settings
 config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
 

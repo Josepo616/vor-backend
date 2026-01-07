@@ -11,7 +11,6 @@ class JobReq(TimestampModel):
 
     title: Mapped[str] = mapped_column(index=True)
     description: Mapped[str] = mapped_column(Text) # Text allows for longer descriptions
-    description: Mapped[str] = mapped_column(Text)
 
     # Foreign key to link to the recruiter (user)
     recruiter_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
