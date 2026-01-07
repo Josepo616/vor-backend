@@ -19,7 +19,7 @@ dependencies = [
 
 [tool.ruff]
 line-length = 88
-select = ["E", "F", "W"]
+lint.select = ["E", "F", "W"]
 
 
 [build-system]

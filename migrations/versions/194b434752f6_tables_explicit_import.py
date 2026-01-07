@@ -1,6 +1,6 @@
 """Tables Explicit Import
 Revision ID: 194b434752f6
-Revises: 
+Revises:
 Create Date: 2026-01-06 23:15:30.185391
 """
 from typing import Sequence, Union
@@ -25,8 +25,12 @@ def upgrade() -> None:
     sa.Column('full_name', sa.String(), nullable=True),
     sa.Column('is_active', sa.Boolean(), nullable=False),
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=False),
-    sa.Column('updated_at', sa.DateTime(), server_default=sa.text('now()'), nullable=False),
+    sa.Column('created_at', sa.DateTime(),
+              server_default=sa.text('now()'),
+              nullable=False),
+    sa.Column('updated_at', sa.DateTime(),
+              server_default=sa.text('now()'),
+              nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_users_email'), 'users', ['email'], unique=True)
@@ -36,8 +40,12 @@ def upgrade() -> None:
     sa.Column('description', sa.Text(), nullable=False),
     sa.Column('recruiter_id', sa.Integer(), nullable=False),
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=False),
-    sa.Column('updated_at', sa.DateTime(), server_default=sa.text('now()'), nullable=False),
+    sa.Column('created_at', sa.DateTime(),
+              server_default=sa.text('now()'),
+              nullable=False),
+    sa.Column('updated_at', sa.DateTime(),
+              server_default=sa.text('now()'),
+              nullable=False),
     sa.ForeignKeyConstraint(['recruiter_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -50,8 +58,12 @@ def upgrade() -> None:
     sa.Column('parsed_data', postgresql.JSONB(astext_type=sa.Text()), nullable=True),
     sa.Column('job_id', sa.Integer(), nullable=False),
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=False),
-    sa.Column('updated_at', sa.DateTime(), server_default=sa.text('now()'), nullable=False),
+    sa.Column('created_at', sa.DateTime(),
+              server_default=sa.text('now()'),
+              nullable=False),
+    sa.Column('updated_at', sa.DateTime(),
+              server_default=sa.text('now()'),
+              nullable=False),
     sa.ForeignKeyConstraint(['job_id'], ['jobs.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

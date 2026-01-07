@@ -10,9 +10,6 @@ from alembic import context
 from app.core.config import settings
 from app.core.database import Base
 
-from app.models.user import User
-from app.models.job import JobReq
-from app.models.candidate import Candidate
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
