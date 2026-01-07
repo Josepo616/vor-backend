@@ -13,7 +13,7 @@ from app.schemas.user import UserCreate, UserResponse
 
 router = APIRouter()
 
-# 1. Sign Up Endpoint (temp for testing)
+# 1. Sign Up (Create User)
 @router.post("/signup", response_model=UserResponse)
 async def create_user(user_in: UserCreate, db: AsyncSession = Depends(get_db)) -> Any:
     # Check if user already exists
@@ -63,7 +63,7 @@ async def login_access_token(
         "token_type": "bearer",
     }
 
-# 3. TEST (protected endpoint)
+# 3. Get Current User Profile
 @router.get("/me", response_model=UserResponse)
 async def read_users_me(
     current_user: Annotated[User, Depends(deps.get_current_user)]

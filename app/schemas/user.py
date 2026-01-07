@@ -9,6 +9,7 @@ class UserBase(BaseModel):
 # Create: the recived data when registering
 class UserCreate(UserBase):
     password: str
+    full_name: str | None = None
 
 # Response: what is returned (excluding sensitive info)
 class UserResponse(UserBase):
