@@ -13,6 +13,16 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      - name: Delete branch
+      # Install GitHub CLI
+      - name: Install GitHub CLI
+        uses: cli/gh-action@v2
+
+      # Delete the branch using GitHub API
+      - name: Delete branch via GitHub API
         run: |
-          git push origin --delete ${{ github.head_ref }}
+          echo "Deleting branch ${{ github.head_ref }}..."
+          gh api \
+            -X DELETE \
+            repos/${{ github.repository }}/git/refs/heads/${{ github.head_ref }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
