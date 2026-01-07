@@ -1,8 +1,5 @@
 from fastapi import FastAPI
 from app.core.config import settings
-from app.models.user import User
-from app.models.job import JobReq
-from app.models.candidate import Candidate 
 from app.api.v1.api import api_router
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -14,7 +11,8 @@ app = FastAPI(
 # CORS settings - Allow all origins for development
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # In production, specify allowed origins (e.g., your frontend URL)
+    # In production, specify allowed origins (e.g., your frontend URL)
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

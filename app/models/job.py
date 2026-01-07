@@ -13,9 +13,9 @@ class JobReq(TimestampModel):
 
     title: Mapped[str] = mapped_column(index=True)
     description: Mapped[str] = mapped_column(Text)
-    
+
     recruiter_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
- 
+
     # Usa comillas para referenciar las clases
     recruiter: Mapped["User"] = relationship(back_populates="jobs")
     candidates: Mapped[list["Candidate"]] = relationship(back_populates="job")

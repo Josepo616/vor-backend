@@ -5,7 +5,6 @@ from jose import JWTError, jwt
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 
-from app.core import security
 from app.core.config import settings
 from app.core.database import get_db
 from app.models.user import User
@@ -34,7 +33,7 @@ async def get_current_user (
         token_data = TokenPayload(**payload)
     except (JWTError):
         raise credentials_exception
-    
+
     # Look for the user in the DB
     query = select(User).where(User.id == int(token_data.sub))
     result = await db.execute(query)

@@ -1,5 +1,5 @@
 from typing import Annotated, Any
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
@@ -24,7 +24,7 @@ async def create_user(user_in: UserCreate, db: AsyncSession = Depends(get_db)) -
             status_code=400,
             detail="The user with this email already exists in the system.",
         )
-    
+
     # Create new user
     user = User(
         email=user_in.email,
@@ -44,12 +44,15 @@ async def login_access_token(
     db: AsyncSession = Depends(get_db),
 ) -> Any:
     # Look for the user in the DB
-    query = select(User).where(User.email == form_data.username) # OAuth2 uses 'username' field for email
+    # OAuth2 uses 'username' field for email
+    query = select(User).where(User.email == form_data.username)
     result = await db.execute(query)
     user = result.scalars().first()
 
     # Validate user
-    if not user or not security.verify_password(form_data.password, user.hashed_password):
+    if not user or not security.verify_password(
+        form_data.password, user.hashed_password
+        ):
         raise HTTPException(
             status_code=400,
             detail="Incorrect email or password",
@@ -57,7 +60,7 @@ async def login_access_token(
 
     if not user.is_active:
         raise HTTPException(status_code=400, detail="Inactive user")
-    
+
     return {
         "access_token": security.create_access_token((user.id)),
         "token_type": "bearer",
