@@ -29,7 +29,7 @@ class TimestampModel(Base):
         server_default=func.now(), onupdate=func.now()
     )
 
-# Dependency to inject the database into enpoints
+# Dependency to inject the database into endpoints
 async def get_db() -> AsyncGenerator[AsyncSession, None]:
     async with SessionLocal() as session:
         yield session
