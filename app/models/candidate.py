@@ -3,6 +3,7 @@ from sqlalchemy import ForeignKey, Text
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.core.database import TimestampModel
+from app.models.job import JobReq
 
 class Candidate(TimestampModel):
     __tablename__ = "candidates"
@@ -13,7 +14,8 @@ class Candidate(TimestampModel):
     # Raw data
     resume_text: Mapped[str | None] = mapped_column(Text) # Extracted text from PDF
 
-    # Rich data stored as JSONB (essential to save variable structures from LinkedIn/IA))
+    # Rich data stored as JSONB
+    # (essential to save variable structures from LinkedIn/IA))
     # i.e., {"skills": ["Python", "Swift"], "linkedin_summary": "..."}
     parsed_data: Mapped[dict[str, Any] | None] = mapped_column(JSONB, default={})
 

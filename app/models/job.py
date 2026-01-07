@@ -1,6 +1,8 @@
 from sqlalchemy import ForeignKey, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.core.database import TimestampModel
+from app.models.user import User
+from app.models.candidate import Candidate
 
 # Use string for the type hint to avoid circular import
 
