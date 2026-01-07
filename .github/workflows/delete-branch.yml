@@ -14,8 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Install GitHub CLI
-      - name: Install GitHub CLI
-        uses: cli/gh-action@v2
+      - uses: cli/gh-action@v2
 
       # Delete the branch using GitHub API
       - name: Delete branch via GitHub API
