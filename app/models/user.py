@@ -2,7 +2,6 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.core.database import TimestampModel
 from app.models.job import JobReq
 
-
 class User(TimestampModel):
     __tablename__ = "users"
 
